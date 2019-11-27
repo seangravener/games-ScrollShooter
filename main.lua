@@ -37,6 +37,7 @@ function love.update(dt)
         love.event.push('quit')
     end
 
+    -- Player horizontal movement
     if love.keyboard.isDown('left', 'a') then
         if player.x > 0 then
             player.x = player.x - (player.speed * dt)
@@ -44,6 +45,17 @@ function love.update(dt)
     elseif love.keyboard.isDown('right', 'd') then
         if player.x < (love.graphics.getWidth() - player.img:getWidth()) then
             player.x = player.x + (player.speed * dt)
+        end
+    end
+
+    -- Player vertical movement
+    if love.keyboard.isDown('up', 'w') then
+        if player.y > (love.graphics.getHeight() / 2) then
+            player.y = player.y - (player.speed * dt)
+        end
+    elseif love.keyboard.isDown('down', 's') then
+        if player.y < (love.graphics.getHeight() - 55) then
+            player.y = player.y + (player.speed * dt)
         end
     end
 
@@ -123,6 +135,9 @@ function love.update(dt)
 end
 
 function love.draw(dt)
+    love.graphics.setColor(255, 255, 255)
+    love.graphics.print("SCORE: " .. tostring(score), 400, 10)
+
     if isAlive then
         love.graphics.draw(player.img, player.x, player.y)
     else
