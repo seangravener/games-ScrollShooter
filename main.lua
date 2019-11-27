@@ -1,3 +1,4 @@
+require 'util'
 collision = require 'collision'
 debug = true
 
@@ -122,6 +123,10 @@ function love.update(dt)
         -- reset our game state
         score = 0
         isAlive = true
+    end
+
+    if love.keyboard.isDown('c') then
+        print_r(player)
     end
 end
 
