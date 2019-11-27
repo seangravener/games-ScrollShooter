@@ -13,9 +13,13 @@ function love.update(dt)
     end
 
     if love.keyboard.isDown('left', 'a') then
-        player.x = player.x - (player.speed * dt)
+        if player.x > 0 then
+            player.x = player.x - (player.speed * dt)
+        end
     elseif love.keyboard.isDown('right', 'd') then
-        player.x = player.x + (player.speed * dt)
+        if player.x < (love.graphics.getWidth() - player.img:getWidth()) then
+            player.x = player.x + (player.speed * dt)
+        end
     end
 end
 
